@@ -1,0 +1,21 @@
+.body{
+	width: 100%;
+	background-color: red;
+}
+.sub-title{
+
+	white-space: nowrap;
+  	overflow: hidden;
+}
+.justbrewed{
+	width: 100%;
+}
+#valid{
+	width: 100%;
+}
+#valider{
+	width: 100%;
+}
+#validest{
+	width: 100%;
+}

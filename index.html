@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link href="styles.css" rel="stylesheet" type="text/css">
+<link rel='stylesheet' media='screen and (min-width: 150px) and (max-width: 450px)' href='mobile.css' />
+<title>how many cups of coffee</title>
+<meta name="description" content="Tracking all the coffee one man drinks">
+<meta name="keywords" content="Tracking, Coffee, Biometrics">
+<meta name="author" content="Jason Hejna">
+<meta charset="UTF-8">
+<link href='http://fonts.googleapis.com/css?family=Lobster|Oswald:400,700|Open+Sans:400,800' rel='stylesheet' type='text/css'>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/>
+</head>
+<body>
+<h1 class="title">howmanycupsofcoffee.com</h1>
+<h2 class="sub-title">one Mans live Coffee tracker</h2>
+<form class="justbrewed">
+<input id="valid" type="password" placeholder="Enter Secret">
+<input id="valider" type="password">
+<input id="validest" type="password">
+<input id="button" type="button" value="+1">
+</form>
+<div id="errorcode"></div>
+<script>
+//delete characters bug fix
+var strlngth=document.getElementById('valid').value.length;
+document.getElementById('valid').onkeypress=function(){
+		//check for delete keypress
+	if(strlngth>document.getElementById('valid').value.length || document.getElementById('valid').value.length === 0){
+		r=0;
+	}
+	strlngth=document.getElementById('valid').value.length;
+}
+var r=0; var idc="vone"; var lngth="3"; 
+document.getElementById('valid').onkeyup=function(){
+
+	if(r===3 && document.getElementById('valid').value===idc){
+		console.log("first evaluation complete");
+		//show more texboxes
+		document.getElementById('valider').style.display = 'block';
+		document.getElementById('validest').style.display = 'block';
+		document.getElementById('button').style.display = 'block';
+	}
+
+	if(r>6 && r<13){
+		document.getElementById('errorcode').innerHTML = "This input won't do anything for you. It allows me to log my current cup of coffee. Please check out some other parts of the site.";
+		alert("This input won't do anything for you. It allows me to log my current cup of coffee. Please check out some other parts of the site.");
+	}
+	else if(r===0 && document.getElementById('valid').value != idc.substr(0,1) ){
+		document.getElementById('errorcode').innerHTML = "This input won't do anything for you. It allows me to log my current cup of coffee. Please check out some other parts of the site.";
+		alert("This input won't do anything for you. It allows me to log my current cup of coffee. Please check out some other parts of the site.");
+		console.log('logol');
+	}
+	else if(r>=13 && r<16){
+		document.getElementById('errorcode').innerHTML = "Sorry for the inconvienence. But this is for Admin use only. Please check out some other parts of the site.";
+		alert("Sorry for the inconvienence. But this is for Admin use only. Please check out some other parts of the site.");
+	}
+	else if(r>=16 && r<20){
+		document.getElementById('errorcode').innerHTML = "I don't do anything. I'm only for the admin.";
+		alert("I don't do anything. I'm only for the admin.");
+	}
+	else if(r>=20){
+		document.getElementById('errorcode').innerHTML = "Life is awesome. Go live it. Preferably somewhere else.";
+		alert("Life is awesome. Go live it. Preferably somewhere else.");
+	}
+r++;
+}
+document.getElementById('button').onclick=function(){
+	if(document.getElementById('valid').value===idc){	
+
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://howmanycupsofcoffee.com/grr/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
+		xhr.onload = function (e) {
+		  if (xhr.readyState === 4) {
+		    if (xhr.status === 200) {
+		      console.log(xhr.responseText);
+		      if(xhr.responseText==="plusone"){
+		      	document.getElementById('errorcode').innerHTML = "another one bites the dust";
+		      	alert("another one bites the dusk");
+		      }
+		    } else {
+		      console.error(xhr.statusText);
+		      document.getElementById('errorcode').innerHTML = "internet error";
+		      alert("internet error");
+		    }
+		  }
+		};
+		xhr.onerror = function (e) {
+		  console.error(xhr.statusText);
+		  document.getElementById('errorcode').innerHTML = "internet error";
+		  alert("internet error");
+		};
+		xhr.send(null);
+	}else{
+		alert("you fail");
+	}
+}
+
+</script>
+</body>
+</html>

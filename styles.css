@@ -1,0 +1,50 @@
+body{
+	max-width: 500px;
+}
+.title{
+	white-space:nowrap;
+	font-family: 'Lobster', cursive;
+	font-size: 1.54em;
+	color: #A67B5B;
+	padding: 0px;
+	text-align:center;
+}
+.sub-title{
+	white-space:nowrap;
+	font-family: 'Oswald', sans-serif;
+	font-size: 1.3em;
+	padding: 0px;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-align:center;
+}
+.justbrewed{
+	width: 100%;
+	max-width: 75px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#button{
+	display: none;
+	width: 100%;
+	margin-left:2px; 
+}
+#valid{
+	width: 100%;
+}
+#valider{
+	width: 100%;
+	display: none;
+}
+#validest{
+	width: 100%;
+	display: none;
+}
+#errorcode{
+	width: 240px;
+	margin-left: auto;
+	margin-right: auto;
+	color:red;
+	word-break:normal;
+	text-align: center;
+}

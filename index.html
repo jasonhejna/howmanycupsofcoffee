@@ -14,15 +14,16 @@
 </head>
 <body>
 <h1 class="title">howmanycupsofcoffee.com</h1>
-<h2 class="sub-title">one Mans live Coffee tracker</h2>
+<h2 class="sub-title">one Person's Coffee tracker</h2>
 <form class="justbrewed">
 <input id="valid" type="password" placeholder="Enter Secret">
 <input id="valider" type="password">
 <input id="validest" type="password">
-<input id="button" type="button" value="+1">
+<input id="newcoffee" type="button" value="+1">
 </form>
 <div id="errorcode"></div>
 <script>
+document.getElementById("newcoffee").disabled = true;
 //delete characters bug fix
 var strlngth=document.getElementById('valid').value.length;
 document.getElementById('valid').onkeypress=function(){
@@ -40,7 +41,7 @@ document.getElementById('valid').onkeyup=function(){
 		//show more texboxes
 		document.getElementById('valider').style.display = 'block';
 		document.getElementById('validest').style.display = 'block';
-		document.getElementById('button').style.display = 'block';
+		document.getElementById('newcoffee').style.display = 'block';
 	}
 
 	if(r>6 && r<13){
@@ -66,9 +67,9 @@ document.getElementById('valid').onkeyup=function(){
 	}
 r++;
 }
-document.getElementById('button').onclick=function(){
+document.getElementById('newcoffee').onclick=function(){
 	if(document.getElementById('valid').value===idc){	
-
+		document.getElementById("newcoffee").disabled = true;
 
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "http://howmanycupsofcoffee.com/grr/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
@@ -77,13 +78,14 @@ document.getElementById('button').onclick=function(){
 		    if (xhr.status === 200) {
 		      console.log(xhr.responseText);
 		      if(xhr.responseText==="plusone"){
-		      	document.getElementById('errorcode').innerHTML = "another one bites the dust";
+		      	//document.getElementById('errorcode').innerHTML = "another one bites the dust";
 		      	alert("another one bites the dusk");
 		      }
 		    } else {
 		      console.error(xhr.statusText);
 		      document.getElementById('errorcode').innerHTML = "internet error";
 		      alert("internet error");
+		      //add to localstorage upload to new api later
 		    }
 		  }
 		};
@@ -91,6 +93,7 @@ document.getElementById('button').onclick=function(){
 		  console.error(xhr.statusText);
 		  document.getElementById('errorcode').innerHTML = "internet error";
 		  alert("internet error");
+		  //add to localstorage upload to new api later
 		};
 		xhr.send(null);
 	}else{

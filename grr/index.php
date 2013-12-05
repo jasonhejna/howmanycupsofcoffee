@@ -16,7 +16,7 @@ if($one === "password" && $two === "password"){
 		"authkey" => "plusone",
 		"userSession" => $_SESSION['login']
 	);
-	echo $json;
+	echo json_encode($json);
 }
 else{
 	echo "you failed again";

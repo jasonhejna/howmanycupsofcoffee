@@ -77,6 +77,8 @@ document.getElementById('newcoffee').onclick=function(){
 		  if (xhr.readyState === 4) {
 		    if (xhr.status === 200) {
 		      console.log(xhr.responseText);
+		      //parse response text
+		      //xhr.responseText
 		      if(xhr.responseText==="plusone"){
 		      	//document.getElementById('errorcode').innerHTML = "another one bites the dust";
 		      	alert("another one bites the dusk");

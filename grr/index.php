@@ -11,7 +11,12 @@ if($one === "4512" && $two === "trebuchet271ii45"){
 	echo "plusone";
 	session_start();
 	$_SESSION['login']=$one;
-	echo $_SESSION['login'];
+	//echo $_SESSION['login'];
+	$json = array(
+		"authkey" => "plusone",
+		"userSession" => $_SESSION['login']
+	);
+	echo $json;
 }
 else{
 	echo "you failed again";

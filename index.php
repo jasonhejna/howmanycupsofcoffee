@@ -14,15 +14,38 @@
 </head>
 <body>
 <h1 class="title">howmanycupsofcoffee.com</h1>
-<h2 class="sub-title">one Person's Coffee tracker</h2>
+<h2 class="sub-title">one Person's Coffee tracker - since 03.12.2013</h2>
 <form class="justbrewed">
 <input id="valid" type="password" placeholder="Enter Secret">
 <input id="valider" type="password" placeholder="username">
 <input id="validest" type="password" placeholder="password">
 <input id="newcoffee" type="button" value="+1">
-</form>
 <div id="errorcode"></div>
+<input id="newcoffeesessionauth" type="button" value="+1newcoffeefromsession">
+</form>
+
+
 <script>
+
+if(sessionStorage.getItem("coffeecupauthsession")){
+console.log(sessionStorage.getItem("coffeecupauthsession"));
+//disable enter secret
+document.getElementById("valid").display = "none";
+document.getElementById("newcoffeesessionauth").style.display = "inline";
+addonefromsession();
+}else{
+	console.log('nothin on the if radar captain');
+}
+
+function addonefromsession(){
+	//newcoffeesessionauth onclick
+	document.getElementById('newcoffeesessionauth').onclick=function(){
+		//do an xmlHTTPrequest
+	}
+}
+
+
+function authenticateNewUser(){
 //document.getElementById("newcoffee").disabled = true;
 //delete characters bug fix
 var strlngth=document.getElementById('valid').value.length;
@@ -41,6 +64,9 @@ document.getElementById('valid').onkeyup=function(){
 	if(r===3 && document.getElementById('valid').value===idc){
 		console.log("first evaluation complete");
 		//show more texboxes
+		//
+		//OR, CREATE THE ELEMENTS!!!
+		//
 		document.getElementById('valider').style.display = 'inline';
 		document.getElementById('validest').style.display = 'inline';
 		document.getElementById('newcoffee').style.display = 'inline';
@@ -82,8 +108,12 @@ document.getElementById('newcoffee').onclick=function(){
 		      var data = JSON.parse(xhr.responseText);
 		      //parse response text
 		      if(data.authkey==="plusone"){
-		      	//document.getElementById('errorcode').innerHTML = "another one bites the dust";
+		      	document.getElementById('errorcode').innerHTML = "another one bites the dust";
 		      	alert("another one bites the dusk");
+		      	sessionStorage.setItem("coffeecupauthsession", data.sessionkey);
+		      }
+		      else{
+		      	alert('Incorrect username or password. Try again.')
 		      }
 		      console.log(data.sessionkey);
 		    } else {
@@ -102,10 +132,10 @@ document.getElementById('newcoffee').onclick=function(){
 		};
 		xhr.send(null);
 	}else{
-		alert("you fail");
+		alert("you got the secret wrong");
 	}
 }
-
+}
 </script>
 </body>
 </html>

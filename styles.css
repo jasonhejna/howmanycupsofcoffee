@@ -29,6 +29,11 @@ body{
 	width: 100%;
 	margin-left:2px; 
 }
+#newcoffeesessionauth{
+	display: none;
+	width: 100%;
+	margin-left:2px; 
+}
 #valid{
 	width: 100%;
 }

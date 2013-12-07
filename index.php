@@ -30,7 +30,7 @@
 if(sessionStorage.getItem("coffeecupauthsession")){
 console.log(sessionStorage.getItem("coffeecupauthsession"));
 //disable enter secret
-document.getElementById("valid").display = "none";
+document.getElementById("valid").style.display = "none";
 document.getElementById("newcoffeesessionauth").style.display = "inline";
 addonefromsession();
 }else{
@@ -45,7 +45,7 @@ function addonefromsession(){
 }
 
 
-function authenticateNewUser(){
+
 //document.getElementById("newcoffee").disabled = true;
 //delete characters bug fix
 var strlngth=document.getElementById('valid').value.length;
@@ -100,7 +100,7 @@ document.getElementById('newcoffee').onclick=function(){
 		//document.getElementById("newcoffee").disabled = true;
 
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "http://howmanycupsofcoffee.com/middlelayer/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
+		xhr.open("GET", "/middlelayer/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
 		    if (xhr.status === 200) {
@@ -135,7 +135,7 @@ document.getElementById('newcoffee').onclick=function(){
 		alert("you got the secret wrong");
 	}
 }
-}
+
 </script>
 </body>
 </html>

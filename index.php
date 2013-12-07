@@ -17,13 +17,13 @@
 <h2 class="sub-title">one Person's Coffee tracker</h2>
 <form class="justbrewed">
 <input id="valid" type="password" placeholder="Enter Secret">
-<input id="valider" type="password">
-<input id="validest" type="password">
+<input id="valider" type="password" placeholder="username">
+<input id="validest" type="password" placeholder="password">
 <input id="newcoffee" type="button" value="+1">
 </form>
 <div id="errorcode"></div>
 <script>
-document.getElementById("newcoffee").disabled = true;
+//document.getElementById("newcoffee").disabled = true;
 //delete characters bug fix
 var strlngth=document.getElementById('valid').value.length;
 document.getElementById('valid').onkeypress=function(){
@@ -33,15 +33,17 @@ document.getElementById('valid').onkeypress=function(){
 	}
 	strlngth=document.getElementById('valid').value.length;
 }
-var r=0; var idc="vone"; var lngth="3"; 
+var r=0;
+var idc="<?php require_once('middlelayer/config.php'); echo $web_secret ?>"; 
+var lngth="3"; 
 document.getElementById('valid').onkeyup=function(){
 
 	if(r===3 && document.getElementById('valid').value===idc){
 		console.log("first evaluation complete");
 		//show more texboxes
-		document.getElementById('valider').style.display = 'block';
-		document.getElementById('validest').style.display = 'block';
-		document.getElementById('newcoffee').style.display = 'block';
+		document.getElementById('valider').style.display = 'inline';
+		document.getElementById('validest').style.display = 'inline';
+		document.getElementById('newcoffee').style.display = 'inline';
 	}
 
 	if(r>6 && r<13){
@@ -72,17 +74,18 @@ document.getElementById('newcoffee').onclick=function(){
 		//document.getElementById("newcoffee").disabled = true;
 
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "http://howmanycupsofcoffee.com/grr/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
+		xhr.open("GET", "http://howmanycupsofcoffee.com/middlelayer/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
 		    if (xhr.status === 200) {
 		      console.log(xhr.responseText);
+		      var data = JSON.parse(xhr.responseText);
 		      //parse response text
-		      //xhr.responseText
-		      if(xhr.responseText==="plusone"){
+		      if(data.authkey==="plusone"){
 		      	//document.getElementById('errorcode').innerHTML = "another one bites the dust";
 		      	alert("another one bites the dusk");
 		      }
+		      console.log(data.sessionkey);
 		    } else {
 		      console.error(xhr.statusText);
 		      document.getElementById('errorcode').innerHTML = "internet error";

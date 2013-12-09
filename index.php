@@ -19,11 +19,10 @@
 <input id="valid" type="password" placeholder="Enter Secret">
 <input id="valider" type="password" placeholder="username">
 <input id="validest" type="password" placeholder="password">
-<input id="newcoffee" type="button" value="+1">
-<div id="errorcode"></div>
+<input id="newcoffee" type="submit" value="+1">
 <input id="newcoffeesessionauth" type="button" value="+1newcoffeefromsession">
 </form>
-
+<div id="errorcode"></div>
 
 <script>
 
@@ -41,6 +40,38 @@ function addonefromsession(){
 	//newcoffeesessionauth onclick
 	document.getElementById('newcoffeesessionauth').onclick=function(){
 		//do an xmlHTTPrequest
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "/middlelayer/sessionadd.php?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
+		xhr.onload = function (e) {
+		  if (xhr.readyState === 4) {
+		    if (xhr.status === 200) {
+		      console.log(xhr.responseText);
+		      var data = JSON.parse(xhr.responseText);
+		      //parse response text
+		      if(data.authkey==="plusone"){
+		      	document.getElementById('errorcode').innerHTML = "another one bites the dust";
+		      	alert("another one bites the dusk");
+		      	sessionStorage.setItem("coffeecupauthsession", data.sessionkey);
+		      }
+		      else{
+		      	alert('Incorrect username or password. Try again.')
+		      }
+		      console.log(data.sessionkey);
+		    } else {
+		      console.error(xhr.statusText);
+		      document.getElementById('errorcode').innerHTML = "internet error";
+		      alert("internet error");
+		      //add to localstorage upload to new api later
+		    }
+		  }
+		};
+		xhr.onerror = function (e) {
+		  console.error(xhr.statusText);
+		  document.getElementById('errorcode').innerHTML = "internet error";
+		  alert("internet error");
+		  //add to localstorage upload to new api later
+		};
+		xhr.send(null);
 	}
 }
 

@@ -1,6 +1,11 @@
 .body{
 	width: 100%;
+	max-width: 100%;
 	background-color: red;
+}
+input{
+	float:left;
+	display: block;
 }
 .sub-title{
 
@@ -8,17 +13,30 @@
   	overflow: hidden;
 }
 .justbrewed{
-	width: 100%;
+	max-width: 200px;
+	width: 200px;
 }
 #valid{
-	width: 100%;
+	max-width: 200px;
+	width: 200px;
+	display: block;
 }
 #valider{
-	width: 100%;
+	max-width: 200px;
+	width: 200px;
 }
 #validest{
-	width: 100%;
+	max-width: 200px;
+	width: 200px;
 }
 #newcoffee{
-	width: 100%;
+	width: 200px;
+}
+#newcoffeesessionauth{
+	max-width: 200px;
+	width: 200px;
+	height: 200px;
+}
+#errorcode{
+	left:0px;
 }

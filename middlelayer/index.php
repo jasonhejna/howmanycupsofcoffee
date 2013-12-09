@@ -12,11 +12,13 @@ $encryptedone = sha1($two.$one);
 		"sessionkey" => $encryptedone
 	);
 	echo json_encode($jsondata);
+	//done
 	session_start();
 	$_SESSION['coffeelogin']=$encryptedone;
 	$dbo = new PDO('mysql:host='.$dbhostaddress.';dbname='.$dbname, $dbuser, $dbpass);
 	$stmt = $dbo->prepare("INSERT INTO cups (time) VALUES (:time)");
 	$stmt->execute(array(':time' => date('Y:m:d:H:i:s')));
+	//this would be a perfect time to generate a file which has calculation made from the data
 }
 else{
 	echo "you failed again";

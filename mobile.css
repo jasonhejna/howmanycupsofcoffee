@@ -1,4 +1,5 @@
 .body{
+	max-width: 100%;
 	width: 100%;
 	max-width: 100%;
 	background-color: red;
@@ -6,6 +7,10 @@
 input{
 	float:left;
 	display: block;
+	margin-bottom: 6px;
+}
+.title{
+
 }
 .sub-title{
 
@@ -19,24 +24,31 @@ input{
 #valid{
 	max-width: 200px;
 	width: 200px;
+	height:30px;
 	display: block;
 }
 #valider{
 	max-width: 200px;
 	width: 200px;
+	height:30px;
 }
 #validest{
 	max-width: 200px;
 	width: 200px;
+	height:30px;
 }
 #newcoffee{
 	width: 200px;
+	height: 40px;
 }
 #newcoffeesessionauth{
 	max-width: 200px;
 	width: 200px;
-	height: 200px;
+	height: 40px;
 }
 #errorcode{
-	left:0px;
+	max-width: 200px;
+	width: 200px;
+	top:auto;
+	left:auto;
 }

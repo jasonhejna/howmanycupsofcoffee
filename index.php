@@ -2,28 +2,28 @@
 <html>
 <head>
 <link href="styles.css" rel="stylesheet" type="text/css">
-<link rel='stylesheet' media='screen and (min-width: 150px) and (max-width: 450px)' href='mobile.css' />
+<link rel='stylesheet' media='screen and (max-width: 450px)' href='mobile.css' />
 <title>how many cups of coffee</title>
 <meta name="description" content="Tracking all the coffee one man drinks">
 <meta name="keywords" content="Tracking, Coffee, Biometrics">
 <meta name="author" content="Jason Hejna">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 <link href='http://fonts.googleapis.com/css?family=Lobster|Oswald:400,700|Open+Sans:400,800' rel='stylesheet' type='text/css'>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/>
 </head>
 <body>
 <h1 class="title">howmanycupsofcoffee.com</h1>
-<h2 class="sub-title">one Person's Coffee tracker - since 03.12.2013</h2>
+<h2 class="sub-title">one Man's Coffee tracker</h2>
 <form class="justbrewed">
 <input id="valid" type="password" placeholder="Enter Secret">
 <input id="valider" type="password" placeholder="username">
 <input id="validest" type="password" placeholder="password">
 <input id="newcoffee" type="submit" value="+1">
-<input id="newcoffeesessionauth" type="button" value="+1newcoffeefromsession">
+<input id="newcoffeesessionauth" type="button" value="+1">
 </form>
 <div id="errorcode"></div>
-
 <script>
 
 if(sessionStorage.getItem("coffeecupauthsession")){
@@ -98,6 +98,7 @@ document.getElementById('valid').onkeyup=function(){
 		//
 		//OR, CREATE THE ELEMENTS!!!
 		//
+		document.getElementById('errorcode').style.display = 'none';
 		document.getElementById('valider').style.display = 'inline';
 		document.getElementById('validest').style.display = 'inline';
 		document.getElementById('newcoffee').style.display = 'inline';

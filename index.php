@@ -4,23 +4,23 @@
 <link href="styles.css" rel="stylesheet" type="text/css">
 <link rel='stylesheet' media='screen and (max-width: 450px)' href='mobile.css' />
 <title>how many cups of coffee</title>
-<meta name="description" content="Tracking all the coffee one man drinks">
+<meta name="description" content="Personal Coffee Tracker for tabulation and graphing.">
 <meta name="keywords" content="Tracking, Coffee, Biometrics">
 <meta name="author" content="Jason Hejna">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0" />
 <link href='http://fonts.googleapis.com/css?family=Lobster|Oswald:400,700|Open+Sans:400,800' rel='stylesheet' type='text/css'>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/>
 </head>
 <body>
 <h1 class="title">howmanycupsofcoffee.com</h1>
-<h2 class="sub-title">one Man's Coffee tracker</h2>
+<h2 class="sub-title">Personal Coffee tracker</h2>
 <form class="justbrewed">
 <input id="valid" type="password" placeholder="Enter Secret">
 <input id="valider" type="password" placeholder="username">
 <input id="validest" type="password" placeholder="password">
-<input id="newcoffee" type="submit" value="+1">
+<input id="newcoffee" type="button" value="+1">
 <input id="newcoffeesessionauth" type="button" value="+1">
 </form>
 <div id="errorcode"></div>
@@ -41,34 +41,35 @@ function addonefromsession(){
 	document.getElementById('newcoffeesessionauth').onclick=function(){
 		//do an xmlHTTPrequest
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "/middlelayer/sessionadd.php?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
+		xhr.open("GET", "/middlelayer/sessionadd.php?sessionkey="+sessionStorage.getItem("coffeecupauthsession"), true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
 		    if (xhr.status === 200) {
 		      console.log(xhr.responseText);
-		      var data = JSON.parse(xhr.responseText);
 		      //parse response text
-		      if(data.authkey==="plusone"){
+		      if(xhr.responseText==="success"){
 		      	document.getElementById('errorcode').innerHTML = "another one bites the dust";
 		      	alert("another one bites the dusk");
-		      	sessionStorage.setItem("coffeecupauthsession", data.sessionkey);
+		      }
+		      else if(xhr.responseText==="failed"){
+		      	document.getElementById('errorcode').innerHTML = "Session expired. Please Log in.";
+		      	alert("Session expired. Please Log in.");
 		      }
 		      else{
-		      	alert('Incorrect username or password. Try again.')
+		      	alert('Unknown error. Try again.');
 		      }
-		      console.log(data.sessionkey);
 		    } else {
 		      console.error(xhr.statusText);
-		      document.getElementById('errorcode').innerHTML = "internet error";
-		      alert("internet error");
+		      document.getElementById('errorcode').innerHTML = "internet error: "+xhr.statusText;
+		      alert("internet error: "+xhr.statusText);
 		      //add to localstorage upload to new api later
 		    }
 		  }
 		};
 		xhr.onerror = function (e) {
 		  console.error(xhr.statusText);
-		  document.getElementById('errorcode').innerHTML = "internet error";
-		  alert("internet error");
+		  document.getElementById('errorcode').innerHTML = "internet error: "+xhr.statusText;
+		  alert("internet error: "+xhr.statusText);
 		  //add to localstorage upload to new api later
 		};
 		xhr.send(null);
@@ -78,7 +79,7 @@ function addonefromsession(){
 
 
 //document.getElementById("newcoffee").disabled = true;
-//delete characters bug fix
+// on delete characters event: set r to 0
 var strlngth=document.getElementById('valid').value.length;
 document.getElementById('valid').onkeypress=function(){
 		//check for delete keypress
@@ -88,8 +89,7 @@ document.getElementById('valid').onkeypress=function(){
 	strlngth=document.getElementById('valid').value.length;
 }
 var r=0;
-var idc="<?php require_once('middlelayer/config.php'); echo $web_secret ?>"; 
-var lngth="3"; 
+var idc="<?php require_once('middlelayer/config.php'); echo $web_secret ?>";
 document.getElementById('valid').onkeyup=function(){
 
 	if(r===3 && document.getElementById('valid').value===idc){
@@ -128,7 +128,7 @@ document.getElementById('valid').onkeyup=function(){
 r++;
 }
 document.getElementById('newcoffee').onclick=function(){
-	if(document.getElementById('valid').value===idc){	
+	if(document.getElementById('valider').value && document.getElementById('validest').value){	
 		//document.getElementById("newcoffee").disabled = true;
 
 		var xhr = new XMLHttpRequest();
@@ -139,32 +139,38 @@ document.getElementById('newcoffee').onclick=function(){
 		      console.log(xhr.responseText);
 		      var data = JSON.parse(xhr.responseText);
 		      //parse response text
-		      if(data.authkey==="plusone"){
+		      if(data.authkey==="plusone"){		      	
 		      	document.getElementById('errorcode').innerHTML = "another one bites the dust";
 		      	alert("another one bites the dusk");
+		      	document.getElementById('valid').style.display = 'none';
+		      	document.getElementById('valider').style.display = 'none';
+		      	document.getElementById('validest').style.display = 'none';
+		      	document.getElementById('newcoffee').style.display = 'none';
+		      	document.getElementById('newcoffeesessionauth').style.display = 'inline';
+
 		      	sessionStorage.setItem("coffeecupauthsession", data.sessionkey);
 		      }
 		      else{
-		      	alert('Incorrect username or password. Try again.')
+		      	alert('Incorrect username or password. Try again.');
 		      }
 		      console.log(data.sessionkey);
 		    } else {
 		      console.error(xhr.statusText);
-		      document.getElementById('errorcode').innerHTML = "internet error";
-		      alert("internet error");
+		      document.getElementById('errorcode').innerHTML = "internet error: "+xhr.statusText;
+		      alert("internet error: "+xhr.statusText);
 		      //add to localstorage upload to new api later
 		    }
 		  }
 		};
 		xhr.onerror = function (e) {
 		  console.error(xhr.statusText);
-		  document.getElementById('errorcode').innerHTML = "internet error";
-		  alert("internet error");
+		  document.getElementById('errorcode').innerHTML = "internet error: "+xhr.statusText;
+		  alert("internet error: "+xhr.statusText);
 		  //add to localstorage upload to new api later
 		};
 		xhr.send(null);
 	}else{
-		alert("you got the secret wrong");
+		alert("You didn't enter a password yo.");
 	}
 }
 

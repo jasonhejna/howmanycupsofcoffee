@@ -6,15 +6,21 @@ $one = htmlspecialchars($_GET['vone']);
 $two = htmlspecialchars($_GET['vtwo']);
 require_once('config.php');
 if($one === $webusername && $two === $webpassword){
-$encryptedone = sha1($two.$one);
+	session_start();
+	if( isset($_SESSION['coffeelogin']) ){
+		//we have another logged in user
+		$encryptedone = $_SESSION['coffeelogin'];
+	}else{
+		$encryptedone = sha1($two.$one);
+		$_SESSION['coffeelogin']=$encryptedone;
+	}
+
 	$jsondata = array(
 		"authkey" => "plusone",
 		"sessionkey" => $encryptedone
 	);
 	echo json_encode($jsondata);
-	//done
-	session_start();
-	$_SESSION['coffeelogin']=$encryptedone;
+
 	$dbo = new PDO('mysql:host='.$dbhostaddress.';dbname='.$dbname, $dbuser, $dbpass);
 	$stmt = $dbo->prepare("INSERT INTO cups (time) VALUES (:time)");
 	$stmt->execute(array(':time' => date('Y:m:d:H:i:s')));

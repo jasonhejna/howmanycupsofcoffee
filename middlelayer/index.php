@@ -1,10 +1,11 @@
 <?php
-date_default_timezone_set('America/Detroit');
+require_once('config.php');
+date_default_timezone_set($timezone);
 error_reporting(E_ALL);
 
 $one = htmlspecialchars($_GET['vone']);
 $two = htmlspecialchars($_GET['vtwo']);
-require_once('config.php');
+
 if($one === $webusername && $two === $webpassword){
 	session_start();
 	if( isset($_SESSION['coffeelogin']) ){

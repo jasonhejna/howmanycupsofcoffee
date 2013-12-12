@@ -98,7 +98,7 @@ document.getElementById('valid').onkeyup=function(){
 		//
 		//OR, CREATE THE ELEMENTS!!!
 		//
-		document.getElementById('errorcode').style.display = 'none';
+		document.getElementById('errorcode').innerHTML = '';
 		document.getElementById('valider').style.display = 'inline';
 		document.getElementById('validest').style.display = 'inline';
 		document.getElementById('newcoffee').style.display = 'inline';

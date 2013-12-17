@@ -26,8 +26,8 @@
 <div id="errorcode"></div>
 <script>
 
-if(sessionStorage.getItem("coffeecupauthsession")){
-console.log(sessionStorage.getItem("coffeecupauthsession"));
+if(localStorage.coffeecupauthsession){
+console.log(localStorage.coffeecupauthsession);
 //disable enter secret
 document.getElementById("valid").style.display = "none";
 document.getElementById("newcoffeesessionauth").style.display = "inline";
@@ -41,7 +41,7 @@ function addonefromsession(){
 	document.getElementById('newcoffeesessionauth').onclick=function(){
 		//do an xmlHTTPrequest
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "/middlelayer/sessionadd.php?sessionkey="+sessionStorage.getItem("coffeecupauthsession"), true);
+		xhr.open("GET", "/middlelayer/sessionadd.php?sessionkey="+localStorage.coffeecupauthsession, true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
 		    if (xhr.status === 200) {
@@ -148,7 +148,7 @@ document.getElementById('newcoffee').onclick=function(){
 		      	document.getElementById('newcoffee').style.display = 'none';
 		      	document.getElementById('newcoffeesessionauth').style.display = 'inline';
 
-		      	sessionStorage.setItem("coffeecupauthsession", data.sessionkey);
+		      	localStorage.coffeecupauthsession=data.sessionkey;
 		      }
 		      else{
 		      	alert('Incorrect username or password. Try again.');

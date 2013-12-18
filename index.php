@@ -34,6 +34,7 @@ document.getElementById("newcoffeesessionauth").style.display = "inline";
 addonefromsession();
 }else{
 	console.log('nothin on the if radar captain');
+	//draw graphs
 }
 
 function addonefromsession(){

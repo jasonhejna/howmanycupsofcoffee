@@ -14,6 +14,7 @@ if($_SESSION['coffeelogin'] === $sessionkey){
 	$stmt = $dbo->prepare("INSERT INTO cups (time) VALUES (:time)");
 	$stmt->execute(array(':time' => date('Y:m:d:H:i:s')));
 	//this would be a perfect time to generate a file which has calculation made from the data
+	//include('makestats.php');
 }else{
 	echo "failed";
 }

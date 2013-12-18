@@ -55,6 +55,8 @@ function addonefromsession(){
 		      else if(xhr.responseText==="failed"){
 		      	document.getElementById('errorcode').innerHTML = "Session expired. Please Log in.";
 		      	alert("Session expired. Please Log in.");
+		      	document.getElementById("valid").style.display = "inline";
+			document.getElementById("newcoffeesessionauth").style.display = "none";
 		      }
 		      else{
 		      	alert('Unknown error. Try again.');

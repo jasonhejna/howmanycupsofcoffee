@@ -25,3 +25,5 @@ Step 3) Find the "config.php" file in the "middlelayer" directory. Edit your set
 Step 4) Visit yourdomain.com/yourDirectoryName. Please note: The site is designed to work on mobile devices. You may find it usefull to bookmark the site as an app icon on your phone.
 
 Enjoy!
+
+howmanycupsofcoffee is being actively developed, check for updates often. To upgrade: save your config.php file someplace, replace all the other files and folders with the new content you download from https://github.com/jasonhejna/howmanycupsofcoffee.

@@ -149,6 +149,7 @@ document.getElementById('newcoffee').onclick=function(){
 		      	document.getElementById('valider').style.display = 'none';
 		      	document.getElementById('validest').style.display = 'none';
 		      	document.getElementById('newcoffee').style.display = 'none';
+		      	addonefromsession();
 		      	document.getElementById('newcoffeesessionauth').style.display = 'inline';
 
 		      	localStorage.coffeecupauthsession=data.sessionkey;

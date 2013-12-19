@@ -42,7 +42,7 @@ function addonefromsession(){
 	document.getElementById('newcoffeesessionauth').onclick=function(){
 		//do an xmlHTTPrequest
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "/middlelayer/sessionadd.php?sessionkey="+localStorage.coffeecupauthsession, true);
+		xhr.open("GET", "middlelayer/sessionadd.php?sessionkey="+localStorage.coffeecupauthsession, true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
 		    if (xhr.status === 200) {
@@ -135,7 +135,7 @@ document.getElementById('newcoffee').onclick=function(){
 		//document.getElementById("newcoffee").disabled = true;
 
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "/middlelayer/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
+		xhr.open("GET", "middlelayer/?vone="+document.getElementById('valider').value+"&vtwo="+document.getElementById('validest').value, true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
 		    if (xhr.status === 200) {

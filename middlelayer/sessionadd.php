@@ -3,11 +3,11 @@ require_once('config.php');
 date_default_timezone_set($timezone);
 error_reporting(E_ALL);
 //get session from an authed user. if isset else 
-session_start();
-$sessionkey = $_GET['sessionkey'];
 
+$sessionkey = $_GET['sessionkey'];
+session_start();
 //send back the same json as index.php, except include a string we can test for
-if($_SESSION['coffeelogin'] === $sessionkey){
+if(isset($_SESSION['coffeelogin']) && isset($sessionkey) && $_SESSION['coffeelogin'] === $sessionkey){
 	echo "success";
 	
 	$dbo = new PDO('mysql:host='.$dbhostaddress.';dbname='.$dbname, $dbuser, $dbpass);

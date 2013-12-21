@@ -40,14 +40,15 @@ This file is part of howmanycupsofcoffee.
 <input id="newcoffeesessionauth" type="button" value="+1">
 </form>
 <div id="errorcode"></div>
+<div id="lastcuptime"></div>
 <script>
 
 if(localStorage.coffeecupauthsession){
-console.log(localStorage.coffeecupauthsession);
 //disable enter secret
 document.getElementById("valid").style.display = "none";
 document.getElementById("newcoffeesessionauth").style.display = "inline";
 addonefromsession();
+getLastCup();
 }else{
 	console.log('nothin on the if radar captain');
 	//draw graphs
@@ -67,6 +68,7 @@ function addonefromsession(){
 		      if(xhr.responseText==="success"){
 		      	document.getElementById('errorcode').innerHTML = "another one bites the dust";
 		      	alert("another one bites the dusk");
+		      	getLastCup();
 		      }
 		      else if(xhr.responseText==="failed"){
 		      	document.getElementById('errorcode').innerHTML = "Session expired. Please Log in.";
@@ -194,6 +196,26 @@ document.getElementById('newcoffee').onclick=function(){
 	}
 }
 
+function getLastCup(){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "middlelayer/getLastCup.php?sessionkey="+localStorage.coffeecupauthsession, true);
+		xhr.onload = function (e) {
+		  if (xhr.readyState === 4) {
+		    if (xhr.status === 200) {
+		      console.log(xhr.statusText);
+		      document.getElementById('lastcuptime').innerHTML = "Last Cup: "+xhr.responseText;
+		    } else {
+		      console.error(xhr.statusText);
+		      //display:none
+		    }
+		  }
+		};
+		xhr.onerror = function (e) {
+		  console.error(xhr.statusText);
+
+		};
+		xhr.send(null);
+}
 </script>
 </body>
 </html>

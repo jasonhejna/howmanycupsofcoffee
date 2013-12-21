@@ -52,8 +52,17 @@ body{
 	left:-60px;
 	width: 200px;
 	max-width: 200px;
-	height:80px;
 	margin-left: auto;
 	margin-right: auto;
-
+}
+#lastcuptime{
+	color:#ccc;
+	word-break:normal;
+	text-align: center;
+	margin: 5px;
+	left:-60px;
+	width: 200px;
+	max-width: 200px;
+	margin-left: auto;
+	margin-right: auto;
 }

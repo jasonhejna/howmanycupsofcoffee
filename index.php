@@ -30,8 +30,8 @@ This file is part of howmanycupsofcoffee.
 <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/>
 </head>
 <body>
-<h1 class="title">howmanycupsofcoffee.com</h1>
-<h2 class="sub-title">Personal Coffee tracker</h2>
+<h1 class="title">howmanycupsofcoffee</h1>
+<h2 class="sub-title">Personal Coffee Tracker</h2>
 <form class="justbrewed">
 <input id="valid" type="password" placeholder="Enter Secret">
 <input id="valider" type="password" placeholder="username">

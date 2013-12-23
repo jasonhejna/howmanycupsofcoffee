@@ -18,32 +18,32 @@
 
 	    
 	    //echo slopeIntercept($done[$i]['time'],$i,$arrayCount);
+		
+		
 		$interval = timeDiff($done[$i]['time'],$done[$i+1]['time']);
-		if($arrayCount===$i){
 
-		}
-		elseif($i>0){
+		if($i>0){
 
 			if($i===1){
-				$degradedAnsw = 1- ((1/(6*60*60))*$interval);
+				$degradedAnsw = 1-((1/(8*60*60))*$interval);
 			}
 			$arrayString .= ",['".$done[$i]['time']."', ".$degradedAnsw."]";
 			
-			$newAnsw = 1+((1/(6*60*60))*$interval);//add the new cup of coffee i.e. 1
-			if($newAnsw>2){
-				$newAnsw =0;
+			$newAnsw = 1+$degradedAnsw;//add the new cup of coffee i.e. 1
+			if($degradedAnsw>2){
+				$degradedAnsw =0;
 			}
 			//print new ANSW
 			$arrayString .= ",['".$done[$i]['time']."', ".$newAnsw."]";
 
-			$degradedAnsw = $newAnsw - ((1/(6*60*60))*$interval);
+			$degradedAnsw = $newAnsw - (1/(8*60*60))*$interval;
 		}
 		elseif($i===0) {
 			//echo $interval;
 			//start creating the Google array, and add the first time with a value of 1
 			
 			$arrayString = "[['time', 'coffeelevel'],['".$done[$i]['time']."', 1]";
-			$oldDateTime = $done[$i]['time'];
+			
 		}
 
 
@@ -63,7 +63,7 @@
 			
 			
 			$timeAdder = (($timeDiff->h)*(60*60)) + (($timeDiff->m)*(60)) + $timeDiff->s;
-			echo $thisDateTime.'<br />'.$nextDateTime.'<br />'.$timeAdder.'<br />'.$timeDiff->h.'<br />'. $timeDiff->m .'<br />'.$timeDiff->s.'<br />';
+			//echo $thisDateTime.'<br />'.$nextDateTime.'<br />'.$timeAdder.'<br />'.$timeDiff->h.'<br />'. $timeDiff->m .'<br />'.$timeDiff->s.'<br />';
 
 			return $timeAdder;
 	}

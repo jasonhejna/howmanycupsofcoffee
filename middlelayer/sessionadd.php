@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 $sessionkey = $_GET['sessionkey'];
 session_start();
 //send back the same json as index.php, except include a string we can test for
-if(isset($_SESSION['coffeelogin']) && isset($sessionkey) && $_SESSION['coffeelogin'] === $sessionkey){
+if(isset($_SESSION['coffeelogin']) && isset($sessionkey) && $_SESSION['coffeelogin'] === $sessionkey){ //Reiculating Session:should use SESSION not being set to trigger an encryption key change. You're vulnerable to session hijacking without ssl
 	echo "success";
 	
 	$dbo = new PDO('mysql:host='.$dbhostaddress.';dbname='.$dbname, $dbuser, $dbpass);

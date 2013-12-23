@@ -11,7 +11,6 @@
 
 	$arrayCount = count($done);
 	//echo $arrayCount;
-	$oldDateTime;
 	$i = 0;
 	do {
 	    //echo "<br />".$done[$i]['time'];

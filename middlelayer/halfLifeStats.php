@@ -61,7 +61,7 @@
 			$timeDiff = $first_date->diff($second_date);
 			
 			
-			$timeAdder = (($timeDiff->h)*(60*60)) + (($timeDiff->m)*(60)) + $timeDiff->s;
+			$timeAdder = (($timeDiff->h)*(60*60)) + (($timeDiff->i)*(60)) + $timeDiff->s;
 			//echo $thisDateTime.'<br />'.$nextDateTime.'<br />'.$timeAdder.'<br />'.$timeDiff->h.'<br />'. $timeDiff->m .'<br />'.$timeDiff->s.'<br />';
 
 			return $timeAdder;
